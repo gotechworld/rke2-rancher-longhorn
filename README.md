@@ -213,8 +213,12 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8
 helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace
 
 # helm install rancher
-helm upgrade -i rancher rancher-latest/rancher --create-namespace --namespace cattle-system --set hostname=rancher.petrugiurca.net --set 
-bootstrapPassword=bootStrapAllTheThings --set replicas=3
+helm upgrade -i rancher rancher-latest/rancher --create-namespace --namespace cattle-system --set hostname=rancher.petrugiurca.net \
+--set bootstrapPassword=bootStrapAllTheThings \
+--set ingress.tls.source=letsEncrypt \
+--set letsEncrypt.email=petru.giurca@pm.me \
+--set letsEncrypt.ingress.class=nginx \
+--set replicas=3
 ```
 
 
